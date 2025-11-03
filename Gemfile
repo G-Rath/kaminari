@@ -22,6 +22,11 @@ else
 end
 
 gem 'rake', RUBY_VERSION < '2.2' ? '< 13' : '>= 0'
+if RUBY_VERSION >= '3.1'
+  gem 'power_assert'
+elsif RUBY_VERSION >= '2.5'
+  gem 'power_assert', '< 3'
+end
 gem 'concurrent-ruby', RUBY_VERSION < '2.2' ? '< 1.1.10' : RUBY_VERSION < '2.3' ? '< 1.2' : '>= 1.2'
 gem 'mini_portile2', RUBY_VERSION < '2.3' ? '< 2.5.1' : '>= 0'
 gem 'loofah', RUBY_VERSION < '2.5' ? '< 2.21.0' : '>= 0'
