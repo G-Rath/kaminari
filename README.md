@@ -573,24 +573,18 @@ Feel free to message me on Github (amatsuda) or Twitter ([@a_matsuda](https://tw
 
 Fork, fix, then send a pull request.
 
-To run the test suite locally against all supported frameworks:
+To run the test suite locally against newest stable Rails:
 
 ```sh
-% bundle install
-% rake test:all
+% bundle install (or bundle update)
+% bundle e rake test
 ```
 
-To target the test suite against one framework:
+To target the test suite against specific version of Active Record (Rails), set `RAILS_VERSION` environment variable when executing `bundle update` and `rake test`:
 
 ```sh
-% rake test:active_record_50
-```
-
-You can find a list of supported test tasks by running `rake -T`. You may also find it useful to run a specific test for a specific framework. To do so, you'll have to first make sure you have bundled everything for that configuration, then you can run the specific test:
-
-```sh
-% BUNDLE_GEMFILE='gemfiles/active_record_50.gemfile' bundle install
-% BUNDLE_GEMFILE='gemfiles/active_record_50.gemfile' TEST=kaminari-core/test/requests/navigation_test.rb bundle exec rake test
+% RAILS_VERSION=7.2 bundle update
+% RAILS_VERSION=7.2 bundle e rake test
 ```
 
 

@@ -11,36 +11,6 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
-task default: "test:all"
-
-namespace :test do
-  mappers = %w(
-    active_record_edge
-    active_record_60
-    active_record_52
-    active_record_51
-    active_record_50
-    active_record_42
-    active_record_41
-  )
-
-  mappers.each do |gemfile|
-    desc "Run Tests against #{gemfile}"
-    task gemfile do
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle --quiet"
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle exec rake -t test"
-    end
-  end
-
-  desc "Run Tests against all ORMs"
-  task :all do
-    mappers.each do |gemfile|
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle --quiet"
-      sh "BUNDLE_GEMFILE='gemfiles/#{gemfile}.gemfile' bundle exec rake test"
-    end
-  end
-end
-
 task :install_tasks_for_sub_gems do
   Bundler::GemHelper.install_tasks dir: File.join(__dir__, 'kaminari-core'), name: 'kaminari-core'
   Bundler::GemHelper.install_tasks dir: File.join(__dir__, 'kaminari-actionview'), name: 'kaminari-actionview'
